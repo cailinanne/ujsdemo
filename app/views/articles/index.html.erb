@@ -1,25 +1,22 @@
-<h1>Listing articles</h1>
+<h2>All Articles</h2>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.body %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+    <%= div_for(article) do %>
+        <h3><%= article.title %></h3>
+        <div class="details"></div>
+        <ul>
+            <li><%= link_to 'Show ', article %></li>
+            <li><%= link_to 'Show using .js.erb', article_path(article), :remote => true %></li>
+            <li><%= link_to 'Show using callback and JSON', article_path(article), :remote => true, "data-type" => :json %></li>
+            <li><%= link_to 'Show using callback and HTML', article_path(article), :remote => true, "data-type" => :html %></li>
+            <li><%= link_to 'Hide', '#', :class => :hide %></li>
+        </ul>
+    <% end %>
+
+<% end %>
+
+
 
 <%= link_to 'New Article', new_article_path %>

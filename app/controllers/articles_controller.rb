@@ -16,7 +16,9 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
 
         respond_to do |format|
-            format.html # show.html.erb
+            format.html { render :layout => ! request.xhr? }
+            # Default behavior -> renders show.js.erb
+            format.js {}
             format.json { render :json =>  @article }
         end
     end
