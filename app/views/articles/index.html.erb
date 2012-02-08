@@ -1,5 +1,9 @@
 <h2>All Articles</h2>
 
+<p>
+    Click on a "Show" link will show the full title and body of the article.
+    We demonstrate a variety of different ways of making this happen.
+</p>
 
 <% @articles.each do |article| %>
 
@@ -7,10 +11,10 @@
         <h3><%= article.title %></h3>
         <div class="details"></div>
         <ul>
-            <li><%= link_to 'Show ', article %></li>
-            <li><%= link_to 'Show using .js.erb', article_path(article), :remote => true %></li>
-            <li><%= link_to 'Show using callback and JSON', article_path(article), :remote => true, "data-type" => :json %></li>
-            <li><%= link_to 'Show using callback and HTML', article_path(article), :remote => true, "data-type" => :html %></li>
+            <li><%= link_to 'Show by going to new page', article %></li>
+            <li><%= link_to 'Show using .js.erb', article, :remote => true %></li>
+            <li><%= link_to 'Show using callback and JSON', article, :remote => true, "data-type" => :json %></li>
+            <li><%= link_to 'Show using callback and HTML', article, :remote => true, "data-type" => :html %></li>
             <li><%= link_to 'Hide', '#', :class => :hide %></li>
         </ul>
     <% end %>
