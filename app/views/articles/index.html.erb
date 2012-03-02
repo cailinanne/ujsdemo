@@ -11,11 +11,13 @@
         <h3><%= article.title %></h3>
         <div class="details"></div>
         <ul>
-            <li><%= link_to 'Show by going to new page', article %></li>
-            <li><%= link_to 'Show using .js.erb', article, :remote => true %></li>
-            <li><%= link_to 'Show using callback and JSON', article, :remote => true, "data-type" => :json %></li>
-            <li><%= link_to 'Show using callback and HTML', article, :remote => true, "data-type" => :html %></li>
-            <li><%= link_to 'Hide', '#', :class => :hide %></li>
+            <li><%= link_to 'Show article details by going to new page', article %></li>
+            <li><%= link_to 'Show article details using .js.erb', article, :remote => true %></li>
+            <li><%= link_to 'Show article details using callback and JSON', article, :remote => true, "data-type" => :json %></li>
+            <li><%= link_to 'Show article details using callback and HTML', article, :remote => true, "data-type" => :html %></li>
+            <li><%= link_to 'Hide this article', '#', :class => :hide %></li>
+            <li><%= link_to 'Edit this article', edit_article_path(article) %></li>
+            <li><%= link_to 'Delete this article', article_path(article), :method => :delete %></li>
         </ul>
     <% end %>
 

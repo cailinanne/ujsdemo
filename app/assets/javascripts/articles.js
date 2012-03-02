@@ -13,7 +13,7 @@ jQuery(function($) {
     });
 
     // Handle any AJAX errors (via JS, via JSON or via HTML)
-    $('.article a').on('ajax:error', function(event, xhs, status, error) {
+    $('.article a').on('ajax:error', function(event, xhr, status, error) {
         alert("error: " + error);
     });
 
@@ -22,6 +22,26 @@ jQuery(function($) {
         event.preventDefault();
         $(this).parents('div.article').find('.details').empty();
         return false;
+    });
+
+    // JAVASCRIPT FOR THE NEW ARTICLE PAGE
+
+    // Parse the JSON response and render the successfully created article
+    $('form.new_article').on('ajax:success',function(event, data, status, xhr){
+        $(this).replaceWith('<div>Title: ' + data.title + '</div>' +'<div>Body: ' + data.body + '</div>');
+    });
+
+
+    // Parse the JSON response and generate an unordered list of errors
+    $('form.new_article').on('ajax:error',function(event, xhr, status, error){
+
+        var responseObject = $.parseJSON(xhr.responseText), errors = $('<ul />');
+
+        $.each(responseObject, function(index, value){
+          errors.append('<li>' + index + ':' + value + '</li>');
+        })
+
+        $(this).find('.errors').html(errors);
     });
 
 });

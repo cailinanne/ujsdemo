@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-    # GET /articles
-    # GET /articles.json
+
     def index
         @articles = Article.all
 
@@ -10,8 +9,6 @@ class ArticlesController < ApplicationController
         end
     end
 
-    # GET /articles/1
-    # GET /articles/1.json
     def show
         @article = Article.find(params[:id])
 
@@ -23,57 +20,49 @@ class ArticlesController < ApplicationController
         end
     end
 
-    # GET /articles/new
-    # GET /articles/new.json
     def new
         @article = Article.new
-
-        respond_to do |format|
-            format.html # new.html.erb
-            format.json { render :json =>  @article }
-        end
+        @data_type = :json
     end
 
-    # GET /articles/1/edit
     def edit
         @article = Article.find(params[:id])
+        @data_type = :script
     end
 
-    # POST /articles
-    # POST /articles.json
     def create
         @article = Article.new(params[:article])
 
         respond_to do |format|
             if @article.save
                 format.html { redirect_to @article, :notice => 'Article was successfully created.' }
+                # Send back the new article, we'll render it on the client side
                 format.json { render :json =>  @article, :status => :created, :location => @article }
             else
                 format.html { render :action => "new" }
+                # Send back the errors as JSON, we'll render them on the client side
                 format.json { render :json =>  @article.errors, :status => :unprocessable_entity }
             end
         end
     end
 
-    # PUT /articles/1
-    # PUT /articles/1.json
     def update
         @article = Article.find(params[:id])
 
         respond_to do |format|
             if @article.update_attributes(params[:article])
+                # Redirect to the article template
                 format.html { redirect_to @article, :notice => 'Article was successfully updated.' }
                 format.js { render :js => "window.location.replace('#{article_path(@article)}');"}
             else
                 format.html { render :action => "edit" }
-                # Renders update.js.erb which replaces the body of the form
+                # Renders update.js.erb which replaces the body of the form with a newly
+                # rendered version that will include the form errors
                 format.js {}
             end
         end
     end
 
-    # DELETE /articles/1
-    # DELETE /articles/1.json
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
