@@ -63,10 +63,11 @@ class ArticlesController < ApplicationController
         respond_to do |format|
             if @article.update_attributes(params[:article])
                 format.html { redirect_to @article, :notice => 'Article was successfully updated.' }
-                format.json { head :ok }
+                format.js { render :js => "window.location.replace('#{article_path(@article)}');"}
             else
                 format.html { render :action => "edit" }
-                format.json { render :json =>  @article.errors, :status => :unprocessable_entity }
+                # Renders update.js.erb which replaces the body of the form
+                format.js {}
             end
         end
     end

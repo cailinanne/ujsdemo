@@ -1,5 +1,7 @@
 jQuery(function($) {
 
+    // JAVASCRIPT FOR THE INDEX PAGE
+
     // Callback for rendering via JSON
     $('.article a[data-type=json]').on('ajax:success', function(event, data, status, xhr) {
         $(this).parents('div.article').find('.details').html('<div>Title: ' + data.title + '</div>' +'<div>Body: ' + data.body + '</div>');
@@ -21,4 +23,5 @@ jQuery(function($) {
         $(this).parents('div.article').find('.details').empty();
         return false;
     });
+
 });
