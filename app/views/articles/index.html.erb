@@ -16,7 +16,7 @@
             <li><%= link_to 'Show article details using callback and JSON', article, :remote => true, "data-type" => :json %></li>
             <li><%= link_to 'Show article details using callback and HTML', article, :remote => true, "data-type" => :html %></li>
             <li><%= link_to 'Hide this article', '#', :class => :hide %></li>
-            <li><%= link_to 'Edit this article', edit_article_path(article) %></li>
+            <li><%= link_to 'Edit this article (demo of submitting a form remotely with JS response)', edit_article_path(article) %></li>
             <li><%= link_to 'Delete this article', article_path(article), :method => :delete %></li>
         </ul>
     <% end %>
@@ -25,4 +25,4 @@
 
 
 
-<%= link_to 'New Article', new_article_path %>
+<%= link_to 'New Article (demo of submitting a form remotely with JSON response)', new_article_path %>

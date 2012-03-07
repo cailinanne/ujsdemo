@@ -26,13 +26,14 @@ jQuery(function($) {
 
     // JAVASCRIPT FOR THE NEW ARTICLE PAGE
 
-    // Parse the JSON response and render the successfully created article
+    // Parse the JSON response and replace the <form> with the successfully created article
     $('form.new_article').on('ajax:success',function(event, data, status, xhr){
         $(this).replaceWith('<div>Title: ' + data.title + '</div>' +'<div>Body: ' + data.body + '</div>');
     });
 
 
-    // Parse the JSON response and generate an unordered list of errors
+    // Parse the JSON response and generate an unordered list of errors, then stick it inside
+    // <div class="errors"> which is in our view template
     $('form.new_article').on('ajax:error',function(event, xhr, status, error){
 
         var responseObject = $.parseJSON(xhr.responseText), errors = $('<ul />');
